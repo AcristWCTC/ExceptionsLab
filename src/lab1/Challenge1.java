@@ -37,7 +37,7 @@ public class Challenge1 {
         String msg = "Your last name is: " + lastName;
         JOptionPane.showMessageDialog(null, msg);
     }
-    // could have thrown a null pointer instead of testing for null, however this also checks for empty string.
+
     
     
     
@@ -46,11 +46,8 @@ public class Challenge1 {
             throw new IllegalArgumentException("Your Full name cannot be empty.");
         }         
         String[] nameParts = fullName.split(" ");
-        if (nameParts.length > 2 || nameParts.length < 2){
-            throw new IllegalArgumentException("Incorrect Format");
-        } 
-        // would test for numbers however Jim brought up that one girl with the name 7.
-        // also Prince had a symbol for a few years. I wonder if he hot-keyed that for emails and whatnot.
+
+
         
         return nameParts[nameParts.length - 1];
     }
