@@ -16,24 +16,33 @@ public class InputOutputGui {
     }
 
     public void startConversation() {
-        
-        
-        String fullName = JOptionPane.showInputDialog("Enter full name:");
-        String lastName = "";
+        boolean Repeat = false;
+        String fullName = null;
+        String lastName = null;
        
         
-        while (lastName.isEmpty()){
-        try{
-        lastName = nameService.extractLastName(fullName);
-        } 
-        catch (NameException e){
-            JOptionPane.showMessageDialog(null, e);
-            fullName = JOptionPane.showInputDialog("Enter full name (use Format: first name, last name):");
-        }
+        do{
+            fullName =  JOptionPane.showInputDialog("Enter full name (use Format: first last):");
         
+        
+        try {
+        lastName = nameService.extractLastName(fullName);
+        Repeat = false;
+        
+        } catch (EmptyOrNullException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            Repeat = true;
+        
+        } catch (InputLessThanExpectedException ee){
+            JOptionPane.showMessageDialog(null, ee.getMessage());
+            Repeat = true;
         }
+
+        }while(Repeat);
+        
         String msg = "Your last name is: " + lastName;
         JOptionPane.showMessageDialog(null, msg);
+
         
     }
      
