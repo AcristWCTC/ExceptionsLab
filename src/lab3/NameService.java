@@ -18,9 +18,16 @@ public class NameService {
      * @param fullName - a name containing a first name and a last name
      * @return the last name
      */
-    public String extractLastName(String fullName) {
+    public String extractLastName(String fullName) throws NameException  {
+        if (fullName.isEmpty() || fullName == null){
+            throw new NameException();
+        }         
         String[] nameParts = fullName.split(" ");
-        return nameParts[LAST_NAME_IDX];
+        if (nameParts.length > 2 || nameParts.length < 2){
+            throw new NameException();
+        } 
+        
+        return nameParts[nameParts.length - 1];
     }
     
     /**
@@ -30,8 +37,14 @@ public class NameService {
      * @param fullName - a name containing a first name and a last name
      * @return the first name
      */
-    public String extractFirstName(String fullName) {
+    public String extractFirstName(String fullName) throws NameException{
+         if (fullName.isEmpty() || fullName == null){
+            throw new NameException();
+        }         
         String[] nameParts = fullName.split(" ");
+        if (nameParts.length > 2 || nameParts.length < 2){
+            throw new NameException();
+        } 
         return nameParts[FIRST_NAME_IDX];
     }
 
@@ -41,8 +54,21 @@ public class NameService {
      * @param name - any full name or part of a name.
      * @return the length of the name or part.
      */
-    public int getNameLength(String name) {
-        return name.length();
+    public int getNameLength(String name) throws NameException {
+        if (name.isEmpty() || name == null){
+            throw new NameException();
+        }         
+        String[] nameParts = name.split(" ");
+        if (nameParts.length > 2 || nameParts.length < 2){
+            throw new NameException();
+        } 
+        if(nameParts.length > 1){
+            return (name.length() - (nameParts.length - 1));
+        }
+        else {
+            return name.length();
+        }
     }
     
 }
+
