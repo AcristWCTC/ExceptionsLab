@@ -46,7 +46,9 @@ public class Challenge1 {
             throw new IllegalArgumentException("Your Full name cannot be empty.");
         }         
         String[] nameParts = fullName.split(" ");
-
+        if (nameParts.length < 2){
+            throw new IllegalArgumentException("Incorrect Format");
+        } 
 
         
         return nameParts[nameParts.length - 1];
