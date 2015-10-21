@@ -18,27 +18,42 @@ import javax.swing.JOptionPane;
 public class Challenge1 {
     private static final int LAST_NAME_IDX = 1;
     public static void main(String[] args) {
-        Challenge1 app = new Challenge1();
-        String fullName;   
-        fullName = JOptionPane.showInputDialog("Enter full name (use Format: first last):");
-        String lastName = "";
         
-        while(lastName.isEmpty())
+        boolean askAgain = false;
+        Challenge1 app = new Challenge1();
+        String fullName = null;
+        String lastName = null;
+        
+        do{
+            fullName =  JOptionPane.showInputDialog("Enter full name (use Format: first last):");
+        
+        
         try {
-            
         lastName = app.extractLastName(fullName);
+        askAgain = false;
         
         } catch (IllegalArgumentException e){
-            JOptionPane.showMessageDialog(null, "You must enter a name in the correct format. Please try again.");
-            fullName = JOptionPane.showInputDialog("Enter full name (use Format: first name, last name):");
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            askAgain = true;
         }
-        
+
+        }while(askAgain);
         
         String msg = "Your last name is: " + lastName;
         JOptionPane.showMessageDialog(null, msg);
-    }
-
     
+}
+
+    /**
+     * Attempts to extract last name from full name Constructed of two
+     * parts -- first and last name
+     * @param fullName - a multi-party entry representing full name This Method cannot
+     * guarantee that the name is entered in the form first name and then last name.
+     * @return 
+     * @throws IllegalArgumentException if full name == null or is empty or has less than two parts. 
+     * If full name has two parts no exception will be thrown. this is due to multiple part last names.
+     * 
+     */
     
     
     public String extractLastName(String fullName) {

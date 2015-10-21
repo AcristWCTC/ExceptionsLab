@@ -27,11 +27,11 @@ public class NameService {
      */
     public String extractLastName(String fullName) {
         if (fullName.isEmpty() || fullName == null){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Sorry Name is Required");
         }         
         String[] nameParts = fullName.split(" ");
-        if (nameParts.length > 2 || nameParts.length < 2){
-            throw new IllegalArgumentException();
+        if (nameParts.length < 2){
+            throw new IllegalArgumentException("Sorry two Parts are Required");
         } 
         
         return nameParts[nameParts.length - 1];
@@ -46,11 +46,11 @@ public class NameService {
      */
     public String extractFirstName(String fullName) {
          if (fullName.isEmpty() || fullName == null){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Sorry Name is Required");
         }         
         String[] nameParts = fullName.split(" ");
         if (nameParts.length > 2 || nameParts.length < 2){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Sorry two Parts are Required");
         } 
         return nameParts[FIRST_NAME_IDX];
     }
